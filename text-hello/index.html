@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('./img/❀Yashiro\ -\ Hanako❀.jpg');
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%; 
+            flex-direction: column;
+        }
+
+        h1{
+            color: #ffff;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-decoration: overline;
+            width: 400px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.533);
+            padding: 15px;
+        }
+
+        #content {
+            background-color: #ffff;
+            border-radius: 6px;
+            box-shadow: 2px 6px rgba(0, 0, 0, 0.312);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 12px;
+            margin: 20px;
+            height: 300px;
+            border: 1px solid rgba(0, 0, 0, 0.522);
+            gap: 30px;
+            width: 500px;
+        }
+
+        .boton {
+            padding: 10px;
+            width: 200px;
+            font-size: 15px;
+            cursor: pointer;
+            background-color: cadetblue;
+            border: none;
+            color: #ffff;
+            box-shadow: 2px 4px rgba(0, 0, 0, 0.37);
+            transition: transform 0.2s;
+        }
+
+        .boton:active {
+            transform: scale(0.8);
+        }
+
+        .name-input {
+            padding: 10px;
+        }
+
+        .mensaje {
+            display: flex;
+        }
+
+        .content-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Practica sencilla de javascript para saludar </h1>
+    <div id="content">
+        <div class="mensaje">
+            <p>Hola <span>______ </span> buenos dias</p>
+        </div>
+        <div class="content-inputs">
+            <input class="name-input" type="text" placeholder="Escriba su nombre" name="nombre" id="name">
+            <input class="boton" type="button" value="Saludar">
+        </div>
+    </div>
+    <script>
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Selección de elementos
+            let boton = document.querySelector('.boton');
+            let inputName = document.querySelector('.name-input');
+            const nombre = document.querySelector('.mensaje p span');
+            // Añadir el event listener
+
+
+            // Funcion que obtiene el color de un elemento
+            const getInputColor = (elemento) => {
+                const computedStyle = window.getComputedStyle(elemento);
+                return computedStyle.color
+            }
+
+
+            inputName.addEventListener('focus', () => {
+
+           
+                if (getInputColor(inputName) === 'rgb(255, 0, 0)') {
+
+                    inputName.value = '';
+                    inputName.style.color = 'black'
+                    inputName.style.fontSize = '12px'
+
+                } else {
+                    return
+                }
+            });
+
+
+            boton.addEventListener('click', () => {
+
+                if(getInputColor(inputName) === 'rgb(255, 0, 0)'){
+                    inputName.value = 'Texto invalido, escriba su nombre'
+                    inputName.style.color = 'red'
+                    inputName.style.fontSize = '11px'
+
+                    
+
+                }
+                else if (inputName.value.trim() === '') {
+                    inputName.value = 'Texto vacio, escriba su nombre'
+                    inputName.style.color = 'red'
+                    inputName.style.fontSize = '12px'
+                } else {
+
+                    nombre.textContent = inputName.value + ',';
+                    inputName.value = ''
+                    inputName.style.color = 'black'
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
